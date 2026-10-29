@@ -19,7 +19,7 @@ type XDGOptions = {
 
 function resolveOptions(options?: XDGOptions): { env: EnvLike; home: string } {
   return {
-    env: options?.env ?? process.env,
+    env: options?.env ?? (options?.homedir === undefined ? process.env : {}),
     home: options?.homedir ?? process.env.HOME ?? osHomedir(),
   }
 }
